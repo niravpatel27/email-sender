@@ -2,12 +2,14 @@
 
 const nodemailer = require('nodemailer');
 const fs = require('fs');
+const path = require('path');
 
-const GM_USER = 'USER GMAIL USER';
-const GM_PASSWORD = 'USE GMAIL PASSWORD';
+
+
+const GM_USER = 'CHANGE';
+const GM_PASSWORD = 'CHANGE';
 const SUBJECT = 'CHANGE TO YOUR SUBJECT';
-const FROM = 'CHANGE TO FROM EMAIL';
-const BASE_PATH = 'CHANGE TO BASE PATH';
+const FROM = 'CHANGE';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -22,16 +24,20 @@ const notValidList = [];
 const promiseList = [];
 
 for (let i = 0; i < files.length; i++) {
-  if (files[i]) {
-    const matches = files[i].split(/_(.+)/);
+
+  if (files[i] && path.extname(files[i])==='.jpg') {
+    const matches = files[i].split(/_/);
+    
     if (matches.length > 0) {
-      const email = matches[2];
-      const fullUrl = `${BASE_PATH}/${files[i]}`;
+      const email = matches[2].replace('.jpg','');
       const mailOptions = {
         from: FROM,
         to: email,
         subject: SUBJECT,
-        html: `<p>${fullUrl}</p>`,
+        attachments: [{
+            filename: files[i],
+            path: `./source/${files[i]}`
+        }]
       };
 
       promiseList.push(transporter.sendMail(mailOptions));
