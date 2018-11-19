@@ -1,0 +1,21 @@
+{
+  "name": "email-sender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js",
+    "start": "node index.js",
+    "fix": "eslint index.js --fix"
+  },
+  "author": "Nirav Patel",
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^4.6.8"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
