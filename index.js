@@ -25,7 +25,7 @@ for (let i = 0; i < files.length; i++) {
   if (files[i]) {
     const matches = files[i].split(/_(.+)/);
     if (matches.length > 0) {
-      const email = matches[1];
+      const email = matches[2];
       const fullUrl = `${BASE_PATH}/${files[i]}`;
       const mailOptions = {
         from: FROM,
